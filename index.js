@@ -8,13 +8,12 @@ const cartsRouter = require('./routes/carts');
 
 const app = express();
 
-
 app.use(express.static('public')); // public folder can be accessed
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-  cookieSession({
-    keys: ['asdczxc']
-  })
+	cookieSession({
+		keys: [ 'asdczxc' ]
+	})
 );
 
 app.use(authRouter);
@@ -22,6 +21,7 @@ app.use(adminProductsRouter);
 app.use(productsRouter);
 app.use(cartsRouter);
 
-app.listen(3000, () => {
-  console.log('Listening');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+	console.log(`Listening on port ${port}`);
 });
